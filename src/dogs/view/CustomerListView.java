@@ -6,36 +6,35 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Collection;
-import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
-import dogRepository.DogMemoryRepository;
+import dogRepository.ICustomerRepository;
 import dogRepository.IDogRepository;
+import dogs.controller.ICustomerController;
 import dogs.controller.IDogListController;
+import dogs.model.Customer;
 import dogs.model.Dog;
 
-public class DogListView extends JFrame implements IView, ActionListener{
+public class CustomerListView extends JFrame implements IView,ActionListener{
 
-	
-	private static final String VIEW_TITLE = "Listes des chiens";
+	private static final String VIEW_TITLE = "Listes des clients";
 	private static final Dimension DEFAULT_SIZE = new Dimension(400, 200);
 	private static final Dimension BUTTON_SIZE = new Dimension(10,50);
-	private static final String LIST_DOG = "list_dog";
+	private static final String LIST_CUSTOMER = "list_customer";
 
 	
-	private IDogListController controller;
-	private IDogRepository repository;
+	private ICustomerController controller;
+	private ICustomerRepository repository;
 	
-	public DogListView(IDogListController dogListController, IDogRepository repository)
+	public CustomerListView(ICustomerController customerController, ICustomerRepository repository)
 	{
 		super();
 		
-		this.controller = dogListController;
+		this.controller = customerController;
 		this.repository = repository;
 		this.initialize();
 		this.setUpComponents();
@@ -63,19 +62,19 @@ public class DogListView extends JFrame implements IView, ActionListener{
 		actionPanel.setLayout(new BorderLayout());
 		this.add(actionPanel,BorderLayout.SOUTH);
 		
-		addButton(actionPanel,"OK",LIST_DOG);
+		addButton(actionPanel,"OK",LIST_CUSTOMER);
 	}
 	
 	private void setUpInputDataPanel() {
 		// container interm�diaire JPanel qui contient les �tiquettes (JLabel) et les zones de textes (JTextField)
 		// utiliser un GridLayout comme LayoutManager
-		JPanel createDogPanel = new JPanel();
-		createDogPanel.setLayout(new GridLayout(0,3));
-		this.add(createDogPanel, null);
-		this.addTitleTextField(createDogPanel);
-		Collection<Dog> dogList = this.repository.getList();
-		for (Dog dog : dogList) {
-			addTextField(createDogPanel,dog.getId(),dog.getName(),dog.getBreed());
+		JPanel listCustomerPanel = new JPanel();
+		listCustomerPanel.setLayout(new GridLayout(0,4));
+		this.add(listCustomerPanel, null);
+		this.addTitleTextField(listCustomerPanel);
+		Collection<Customer> customerList = this.repository.getList();
+		for (Customer customer : customerList) {
+			addTextField(listCustomerPanel,customer.getId(),customer.getName(),customer.getLastName(),customer.getPhone());
 		}
 		
 	}
@@ -83,14 +82,16 @@ public class DogListView extends JFrame implements IView, ActionListener{
 	private void addTitleTextField(JPanel panel) {
 		panel.add(new JLabel("id"));
 		panel.add(new JLabel("Name"));
-		panel.add(new JLabel("Breed"));
+		panel.add(new JLabel("Last name"));
+		panel.add(new JLabel("Phone number"));
 	}
 	
-	private void addTextField(JPanel panel, int id, String name, String breed) {
+	private void addTextField(JPanel panel, int id, String name, String lastName,String phoneNumber) {
 		
 		panel.add(new JLabel(Integer.toString(id))); 
 		panel.add(new JLabel(name));
-		panel.add(new JLabel(breed));
+		panel.add(new JLabel(lastName));
+		panel.add(new JLabel(phoneNumber));
 
 	}
 	
@@ -104,7 +105,7 @@ public class DogListView extends JFrame implements IView, ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand() == LIST_DOG) {
+		if (e.getActionCommand() == LIST_CUSTOMER) {
 			this.dispose();
 		}
 		

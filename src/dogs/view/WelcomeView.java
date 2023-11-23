@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import dataSeeder.DataSeeder;
+import dataSeeder.DogSeeder;
 import dogRepository.DogMemoryRepository;
 import dogRepository.IDogRepository;
 import dogs.controller.DogController;
@@ -26,6 +26,7 @@ public class WelcomeView extends JFrame implements IView, ActionListener {   // 
 	private static final String WELCOME_MESSAGE = "Bienvenue !";
 	private static final String ADD_DOG = "add_dog";
 	private static final String LIST_DOG = "list_dog";
+	private static final String LIST_CUSTOMER = "list_customer";
 	
 	private static final String WELCOME_PICTURE = "../resource/dog.jpg";
 
@@ -92,6 +93,11 @@ public class WelcomeView extends JFrame implements IView, ActionListener {   // 
 		listDogButton.setActionCommand(LIST_DOG);
 		listDogButton.addActionListener(this);
 		actionPanel.add(listDogButton);
+		
+		JButton listCustomerButton = new JButton("Liste des Clients");
+		listCustomerButton.setActionCommand(LIST_CUSTOMER);
+		listCustomerButton.addActionListener(this);
+		actionPanel.add(listCustomerButton);
 	}
 
 	@Override
@@ -102,6 +108,10 @@ public class WelcomeView extends JFrame implements IView, ActionListener {   // 
 		
 		if (e.getActionCommand() == LIST_DOG) {
 			this.controller.wantToListDog();
+		}
+		
+		if (e.getActionCommand() == LIST_CUSTOMER) {
+			this.controller.wantToListCustomer();
 		}
 		
 	}

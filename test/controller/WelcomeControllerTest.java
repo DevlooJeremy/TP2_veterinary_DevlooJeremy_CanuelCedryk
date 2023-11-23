@@ -8,6 +8,7 @@ import dogs.controller.DogController;
 import dogs.controller.WelcomeController;
 import mock.DogControllerSpy;
 import mock.ListControllerSpy;
+import mock.CustomerControllerSpy;
 
 class WelcomeControllerTest {
 
@@ -16,7 +17,8 @@ class WelcomeControllerTest {
 		//Arrange
 		DogControllerSpy dogController = new DogControllerSpy();
 		ListControllerSpy listController = new ListControllerSpy();
-		WelcomeController welcomeController = new WelcomeController(dogController,listController);
+		CustomerControllerSpy customerController = new CustomerControllerSpy();
+		WelcomeController welcomeController = new WelcomeController(dogController,listController,customerController);
 		
 		//Act
 		welcomeController.wantToCreateDog();
@@ -30,7 +32,8 @@ class WelcomeControllerTest {
 		//Arrange
 		DogControllerSpy dogController = new DogControllerSpy();
 		ListControllerSpy listController = new ListControllerSpy();
-		WelcomeController welcomeController = new WelcomeController(dogController,listController);
+		CustomerControllerSpy customerController = new CustomerControllerSpy();
+		WelcomeController welcomeController = new WelcomeController(dogController,listController,customerController);
 		
 		//Act
 		welcomeController.wantToListDog();

@@ -1,6 +1,6 @@
 package dogs.controller;
 
-import dataSeeder.DataSeeder;
+import dataSeeder.DogSeeder;
 import dogRepository.DogMemoryRepository;
 import dogRepository.IDogRepository;
 import dogs.view.IView;
@@ -10,10 +10,12 @@ public class WelcomeController implements IWelcomeController {
 
 	private IDogController controller;
 	private IDogListController listController;
+	private ICustomerController customerController;
 	
-	public WelcomeController(IDogController controller, IDogListController listController) {
+	public WelcomeController(IDogController controller, IDogListController listController,ICustomerController customerController) {
 		this.controller = controller;
 		this.listController = listController;
+		this.customerController = customerController;
 	}
 	
 	@Override
@@ -30,5 +32,10 @@ public class WelcomeController implements IWelcomeController {
 	@Override
 	public void wantToListDog() {
 		this.listController.goToCreate();
+	}
+
+	@Override
+	public void wantToListCustomer() {
+		this.customerController.listCustomer();
 	}
 }
