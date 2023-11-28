@@ -1,11 +1,11 @@
 package dataSeeder;
 
-import dogRepository.IDogRepository;
+import dogRepository.IEntityRepository;
 import dogs.model.Dog;
 
 public class DogSeeder {
 
-	public DogSeeder(IDogRepository repository) {		
+	public DogSeeder(IEntityRepository<Dog> repository) {		
 		repository.add(new Dog("Jean","Husky"));
 		repository.add(new Dog("Michel","Golden"));
 		repository.add(new Dog("Robert","Grand Danois"));

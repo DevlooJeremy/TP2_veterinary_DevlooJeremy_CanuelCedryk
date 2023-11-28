@@ -2,23 +2,24 @@ package mock;
 
 import java.util.Collection;
 
-import dogRepository.IDogRepository;
+import dogRepository.IEntityRepository;
 import dogs.model.Dog;
+import dogs.model.Entity;
 
-public class RepositorySpy implements IDogRepository{
+public class RepositorySpy<T extends Entity> implements IEntityRepository<T>{
 	
 	public boolean hasAddBeenCalled = false; 
-	public Dog dogAdded;
+	public T elementAdded;
 
 	@Override
-	public void add(Dog dog) {
+	public void add(T element) {
 		this.hasAddBeenCalled = true;
-		this.dogAdded = dog;
+		this.elementAdded = element;
 		
 	}
 
 	@Override
-	public Collection<Dog> getList() {
+	public Collection<T> getList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -30,9 +31,10 @@ public class RepositorySpy implements IDogRepository{
 	}
 
 	@Override
-	public Dog searchById(int id) {
+	public T searchById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 }

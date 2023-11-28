@@ -14,8 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import dogRepository.DogMemoryRepository;
-import dogRepository.IDogRepository;
+import dogRepository.IEntityRepository;
 import dogs.controller.IDogListController;
 import dogs.model.Dog;
 
@@ -29,9 +28,9 @@ public class DogListView extends JFrame implements IView, ActionListener{
 
 	
 	private IDogListController controller;
-	private IDogRepository repository;
+	private IEntityRepository<Dog> repository;
 	
-	public DogListView(IDogListController dogListController, IDogRepository repository)
+	public DogListView(IDogListController dogListController, IEntityRepository<Dog> repository)
 	{
 		super();
 		

@@ -1,7 +1,7 @@
 package dogs.controller;
 
 import dog.converter.DogConverter;
-import dogRepository.IDogRepository;
+import dogRepository.IEntityRepository;
 import dogs.model.Dog;
 import dogs.view.DogCreateView;
 import dogs.view.IView;
@@ -10,9 +10,9 @@ import dto.DogDTO;
 public class DogController implements IDogController{
 
 
-	private IDogRepository repository;
+	private IEntityRepository<Dog> repository;
 	
-	public DogController(IDogRepository repository) {
+	public DogController(IEntityRepository<Dog> repository) {
 		this.repository = repository;
 	}
 	

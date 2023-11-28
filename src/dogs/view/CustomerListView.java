@@ -12,8 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import dogRepository.ICustomerRepository;
-import dogRepository.IDogRepository;
+import dogRepository.IEntityRepository;
 import dogs.controller.ICustomerController;
 import dogs.controller.IDogListController;
 import dogs.model.Customer;
@@ -28,9 +27,9 @@ public class CustomerListView extends JFrame implements IView,ActionListener{
 
 	
 	private ICustomerController controller;
-	private ICustomerRepository repository;
+	private IEntityRepository<Customer> repository;
 	
-	public CustomerListView(ICustomerController customerController, ICustomerRepository repository)
+	public CustomerListView(ICustomerController customerController, IEntityRepository<Customer> repository)
 	{
 		super();
 		

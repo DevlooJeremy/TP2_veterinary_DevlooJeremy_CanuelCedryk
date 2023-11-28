@@ -4,17 +4,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import dogRepository.DogMemoryRepository;
-import dogRepository.IDogRepository;
+import dogRepository.EntityMemoryRepository;
+import dogRepository.IEntityRepository;
 import dogs.model.Dog;
 
-class DogMemoryRepositoryTest {
+class EntityMemoryRepositoryTest {
 
 	@Test
 	void newDogCanBeAddedToRepository() {
 		//Arrange
 		Dog dog = new Dog("Jean","Machin");
-		IDogRepository repository = new DogMemoryRepository();
+		IEntityRepository<Dog> repository = new EntityMemoryRepository<Dog>();
 		
 		//Act
 		repository.add(dog);
@@ -22,7 +22,7 @@ class DogMemoryRepositoryTest {
 		//Assert
 		assertEquals(1,repository.size());
 		assertTrue(repository.getList().contains(dog));
-		assertTrue(repository.searchById(1).equals(dog));
+		assertTrue(repository.searchById(0).equals(dog));
 	}
 
 }
