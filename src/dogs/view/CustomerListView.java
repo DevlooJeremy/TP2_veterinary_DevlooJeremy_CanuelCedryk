@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import dogRepository.ICustomerRepository;
 import dogRepository.IDogRepository;
@@ -23,9 +24,20 @@ public class CustomerListView extends JFrame implements IView,ActionListener{
 
 	private static final String VIEW_TITLE = "Listes des clients";
 	private static final Dimension DEFAULT_SIZE = new Dimension(400, 200);
-	private static final Dimension BUTTON_SIZE = new Dimension(10,50);
-	private static final String LIST_CUSTOMER = "list_customer";
+	private static final String CLOSE_BTN_TXT = "OK";
+	private static final String CLOSE_BTN = "close_frame";
+	private static final String SEARCH_BTN_TXT = "Rechercher";
+	private static final String SEARCH_BTN = "search";
+	private static final String LAST_NAME_LABEL = "Nom de famille:";
+	private static final String ID_LABEL = "Numéro:";
+	private static final String NAME_TITLE = "PRÉNOM";
+	private static final String LAST_NAME_TITLE = "NOM DE FAMILLE";
+	private static final String PHONE_TITLE = "NUMÉRO DE TÉLÉPHONE";
+	private static final String ID_TITLE = "ID";
 
+
+	private JTextField lastName = new JTextField(20);
+	private JTextField id = new JTextField(20);
 	
 	private ICustomerController controller;
 	private ICustomerRepository repository;
@@ -53,16 +65,38 @@ public class CustomerListView extends JFrame implements IView,ActionListener{
 	
 	private void setUpComponents() {
 		this.setUpInputDataPanel();
-		this.setUpActionPanel();		
+		this.setUpActionPanel();	
+		this.setUpSearchingPanel();
+		this.setUpSearchingBtnPanel();
 	}
 	
 	private void setUpActionPanel() {
-		// container interm�diaire JPanel qui contient le bouton pour inscrire le chien
 		JPanel actionPanel = new JPanel();
-		actionPanel.setLayout(new BorderLayout());
 		this.add(actionPanel,BorderLayout.SOUTH);
 		
-		addButton(actionPanel,"OK",LIST_CUSTOMER);
+		ViewUtil.addButton(this, actionPanel, CLOSE_BTN_TXT, CLOSE_BTN);
+	}
+	
+	private void setUpSearchingPanel() {
+		JPanel searchingPanel = new JPanel();
+		this.add(searchingPanel,BorderLayout.NORTH);
+		searchingPanel.setLayout(new GridLayout(2,2));
+		
+		addTextField(searchingPanel,ID_LABEL,this.id);
+		addTextField(searchingPanel,LAST_NAME_LABEL,this.lastName);
+	}
+	
+	private void setUpSearchingBtnPanel() {
+		JPanel searchingBtnPanel = new JPanel();
+		this.add(searchingBtnPanel,BorderLayout.SOUTH);
+		searchingBtnPanel.setLayout(new GridLayout());
+		ViewUtil.addButton(this, searchingBtnPanel, SEARCH_BTN_TXT, SEARCH_BTN);
+	}
+	
+	private void addTextField(JPanel panel, String labelText, JTextField textField) {
+		
+		panel.add(new JLabel(labelText));
+		panel.add(textField);
 	}
 	
 	private void setUpInputDataPanel() {
@@ -80,10 +114,10 @@ public class CustomerListView extends JFrame implements IView,ActionListener{
 	}
 	
 	private void addTitleTextField(JPanel panel) {
-		panel.add(new JLabel("id"));
-		panel.add(new JLabel("Name"));
-		panel.add(new JLabel("Last name"));
-		panel.add(new JLabel("Phone number"));
+		panel.add(new JLabel(ID_TITLE));
+		panel.add(new JLabel(NAME_TITLE));
+		panel.add(new JLabel(LAST_NAME_TITLE));
+		panel.add(new JLabel(PHONE_TITLE));
 	}
 	
 	private void addTextField(JPanel panel, int id, String name, String lastName,String phoneNumber) {
@@ -94,19 +128,15 @@ public class CustomerListView extends JFrame implements IView,ActionListener{
 		panel.add(new JLabel(phoneNumber));
 
 	}
-	
-	private void addButton(JPanel actionPanel, String buttonText, String buttonAction) {   
-		JButton button = new JButton(buttonText);
-		button.setActionCommand(buttonAction);
-		button.addActionListener(this);
-		//button.setPreferredSize(BUTTON_SIZE);
-		actionPanel.add(button);
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand() == LIST_CUSTOMER) {
+		if (e.getActionCommand() == CLOSE_BTN) {
 			this.dispose();
+		}
+		if (e.getActionCommand() == SEARCH_BTN) {
+			this.dispose();
+			this.controller.listCustomer();
 		}
 		
 	}

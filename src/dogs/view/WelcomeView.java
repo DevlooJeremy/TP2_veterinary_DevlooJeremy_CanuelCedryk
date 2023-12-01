@@ -27,6 +27,9 @@ public class WelcomeView extends JFrame implements IView, ActionListener {   // 
 	private static final String ADD_DOG = "add_dog";
 	private static final String LIST_DOG = "list_dog";
 	private static final String LIST_CUSTOMER = "list_customer";
+	private static final String ADD_DOG_BTN_TXT = "Inscrire un chien";
+	private static final String LIST_DOG_BTN_TXT = "Lister les chiens";
+	private static final String LIST_CUSTOMER_BTN_TXT = "Liste des clients";
 	
 	private static final String WELCOME_PICTURE = "../resource/dog.jpg";
 
@@ -84,20 +87,9 @@ public class WelcomeView extends JFrame implements IView, ActionListener {   // 
 		JPanel actionPanel = new JPanel();
 		this.add(actionPanel, BorderLayout.SOUTH);
 		
-		JButton addDogButton = new JButton("Inscrire un chien");
-		addDogButton.setActionCommand(ADD_DOG);
-		addDogButton.addActionListener(this);
-		actionPanel.add(addDogButton);
-		
-		JButton listDogButton = new JButton("Liste des chiens");
-		listDogButton.setActionCommand(LIST_DOG);
-		listDogButton.addActionListener(this);
-		actionPanel.add(listDogButton);
-		
-		JButton listCustomerButton = new JButton("Liste des Clients");
-		listCustomerButton.setActionCommand(LIST_CUSTOMER);
-		listCustomerButton.addActionListener(this);
-		actionPanel.add(listCustomerButton);
+		ViewUtil.addButton(this, actionPanel, ADD_DOG_BTN_TXT, ADD_DOG);
+		ViewUtil.addButton(this, actionPanel, LIST_DOG_BTN_TXT, LIST_DOG);
+		ViewUtil.addButton(this, actionPanel, LIST_CUSTOMER_BTN_TXT, LIST_CUSTOMER);
 	}
 
 	@Override

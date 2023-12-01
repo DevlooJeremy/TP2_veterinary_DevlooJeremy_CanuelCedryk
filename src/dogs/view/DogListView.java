@@ -24,8 +24,11 @@ public class DogListView extends JFrame implements IView, ActionListener{
 	
 	private static final String VIEW_TITLE = "Listes des chiens";
 	private static final Dimension DEFAULT_SIZE = new Dimension(400, 200);
-	private static final Dimension BUTTON_SIZE = new Dimension(10,50);
-	private static final String LIST_DOG = "list_dog";
+	private static final String ID_TITLE = "ID";
+	private static final String NAME_TITLE = "NOM";
+	private static final String BREED_TITLE = "RACE";
+	private static final String CLOSE_BTN_TXT = "OK";
+	private static final String CLOSE_BTN = "close_frame";
 
 	
 	private IDogListController controller;
@@ -60,10 +63,9 @@ public class DogListView extends JFrame implements IView, ActionListener{
 	private void setUpActionPanel() {
 		// container interm�diaire JPanel qui contient le bouton pour inscrire le chien
 		JPanel actionPanel = new JPanel();
-		actionPanel.setLayout(new BorderLayout());
 		this.add(actionPanel,BorderLayout.SOUTH);
-		
-		addButton(actionPanel,"OK",LIST_DOG);
+
+		ViewUtil.addButton(this, actionPanel, CLOSE_BTN_TXT, CLOSE_BTN);
 	}
 	
 	private void setUpInputDataPanel() {
@@ -81,9 +83,9 @@ public class DogListView extends JFrame implements IView, ActionListener{
 	}
 	
 	private void addTitleTextField(JPanel panel) {
-		panel.add(new JLabel("id"));
-		panel.add(new JLabel("Name"));
-		panel.add(new JLabel("Breed"));
+		panel.add(new JLabel(ID_TITLE));
+		panel.add(new JLabel(NAME_TITLE));
+		panel.add(new JLabel(BREED_TITLE));
 	}
 	
 	private void addTextField(JPanel panel, int id, String name, String breed) {
@@ -93,18 +95,10 @@ public class DogListView extends JFrame implements IView, ActionListener{
 		panel.add(new JLabel(breed));
 
 	}
-	
-	private void addButton(JPanel actionPanel, String buttonText, String buttonAction) {   
-		JButton button = new JButton(buttonText);
-		button.setActionCommand(buttonAction);
-		button.addActionListener(this);
-		//button.setPreferredSize(BUTTON_SIZE);
-		actionPanel.add(button);
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand() == LIST_DOG) {
+		if (e.getActionCommand() == CLOSE_BTN) {
 			this.dispose();
 		}
 		
