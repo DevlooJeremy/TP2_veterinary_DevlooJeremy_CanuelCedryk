@@ -1,8 +1,6 @@
 package dogs.controller;
 
 import dataSeeder.DogSeeder;
-import dogRepository.DogMemoryRepository;
-import dogRepository.IDogRepository;
 import dogs.view.IView;
 import dogs.view.WelcomeView;
 

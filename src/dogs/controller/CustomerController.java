@@ -1,14 +1,15 @@
 package dogs.controller;
 
-import dogRepository.ICustomerRepository;
+import dogRepository.IEntityRepository;
+import dogs.model.Customer;
 import dogs.view.CustomerListView;
 import dto.CustomerDTO;
 
 public class CustomerController implements ICustomerController{
 	
-	private ICustomerRepository repository;
+	private IEntityRepository<Customer> repository;
 	
-	public CustomerController(ICustomerRepository repository) {
+	public CustomerController(IEntityRepository<Customer> repository) {
 		this.repository = repository;
 	}
 

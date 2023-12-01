@@ -2,10 +2,8 @@ package dogs;
 
 import dataSeeder.CustomerSeeder;
 import dataSeeder.DogSeeder;
-import dogRepository.CustomerMemoryRepository;
-import dogRepository.DogMemoryRepository;
-import dogRepository.ICustomerRepository;
-import dogRepository.IDogRepository;
+import dogRepository.EntityMemoryRepository;
+import dogRepository.IEntityRepository;
 import dogs.controller.CustomerController;
 import dogs.controller.DogController;
 import dogs.controller.DogListController;
@@ -14,18 +12,20 @@ import dogs.controller.IDogController;
 import dogs.controller.IDogListController;
 import dogs.controller.IWelcomeController;
 import dogs.controller.WelcomeController;
+import dogs.model.Customer;
+import dogs.model.Dog;
 
 public class MainAppDogs {
 
-	private IDogRepository dogRepository;
-	private ICustomerRepository customerRepository;
+	private IEntityRepository<Dog> dogRepository;
+	private IEntityRepository<Customer> customerRepository;
 	public static void main(String[] args) {
 		new MainAppDogs();
 	}
 
 	public MainAppDogs() {
-		IDogRepository repository = new DogMemoryRepository();
-		ICustomerRepository customerRepository = new CustomerMemoryRepository();
+		IEntityRepository<Dog> repository = new EntityMemoryRepository<Dog>();
+		IEntityRepository<Customer> customerRepository = new EntityMemoryRepository<Customer>();
 		this.dogRepository = repository;
 		this.customerRepository = customerRepository;
 		DogSeeder seeder = new DogSeeder(this.dogRepository);

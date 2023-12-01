@@ -13,8 +13,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import dataSeeder.DogSeeder;
-import dogRepository.DogMemoryRepository;
-import dogRepository.IDogRepository;
 import dogs.controller.DogController;
 import dogs.controller.IDogController;
 import dogs.controller.IWelcomeController;

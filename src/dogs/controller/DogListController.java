@@ -1,14 +1,15 @@
 package dogs.controller;
 
-import dogRepository.IDogRepository;
+import dogRepository.IEntityRepository;
+import dogs.model.Dog;
 import dogs.view.DogListView;
 
 public class DogListController implements IDogListController{
 
 	
-	private IDogRepository repository;
+	private IEntityRepository<Dog> repository;
 	
-	public DogListController(IDogRepository repository) {
+	public DogListController(IEntityRepository<Dog> repository) {
 		this.repository = repository;
 	}
 	@Override

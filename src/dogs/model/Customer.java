@@ -1,8 +1,7 @@
 package dogs.model;
 
-public class Customer {
+public class Customer extends Entity{
 	
-	private int id;
 	private String name;
 	private String lastName;
 	private String phoneNumber;
@@ -13,14 +12,6 @@ public class Customer {
 		this.lastName = lastName;
 		this.phoneNumber = phoneNumber;
 		this.email = email;
-	}
-	
-	public void setId(int id) {
-		this.id = id;
-	}
-	
-	public int getId() {
-		return this.id;
 	}
 	
 	public void setName(String name) {
