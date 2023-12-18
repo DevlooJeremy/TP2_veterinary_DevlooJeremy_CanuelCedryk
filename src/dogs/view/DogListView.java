@@ -112,4 +112,10 @@ public class DogListView extends JFrame implements IView, ActionListener{
 		
 	}
 
+	@Override
+	public void dispalyErrorMessage(String message) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

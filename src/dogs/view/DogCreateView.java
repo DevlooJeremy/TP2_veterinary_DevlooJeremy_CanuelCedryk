@@ -105,4 +105,10 @@ public class DogCreateView extends JDialog implements IView, ActionListener {
 		}
 	}
 
+	@Override
+	public void dispalyErrorMessage(String message) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
