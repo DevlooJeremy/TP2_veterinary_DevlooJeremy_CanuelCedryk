@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.swing.JButton;
@@ -18,6 +19,7 @@ import dogs.controller.ICustomerController;
 import dogs.controller.IDogListController;
 import dogs.model.Customer;
 import dogs.model.Dog;
+import dogs.searcher.CustomerSearcherFabric;
 
 public class CustomerListView extends JFrame implements IView,ActionListener{
 
@@ -41,12 +43,17 @@ public class CustomerListView extends JFrame implements IView,ActionListener{
 	private ICustomerController controller;
 	private IEntityRepository<Customer> repository;
 	
+	private boolean resultOfSearch;
+	private Collection<Customer> customerResultList;
+	private JPanel listCustomerPanel = new JPanel();
+	
 	public CustomerListView(ICustomerController customerController, IEntityRepository<Customer> repository)
 	{
 		super();
 		
 		this.controller = customerController;
 		this.repository = repository;
+		this.resultOfSearch = false;
 		this.initialize();
 		this.setUpComponents();
 		this.pack();
@@ -55,6 +62,15 @@ public class CustomerListView extends JFrame implements IView,ActionListener{
 	@Override
 	public void display() {
 		this.setVisible(true);
+	}
+	
+	public void insertResultOfSearch(Collection<Customer> result) {
+		this.customerResultList = result;
+		resultOfSearch = true;
+		this.remove(listCustomerPanel);
+		this.setUpInputDataPanel();
+		this.revalidate();
+		this.repaint();
 	}
 	
 	private void initialize() {
@@ -101,15 +117,20 @@ public class CustomerListView extends JFrame implements IView,ActionListener{
 	private void setUpInputDataPanel() {
 		// container interm�diaire JPanel qui contient les �tiquettes (JLabel) et les zones de textes (JTextField)
 		// utiliser un GridLayout comme LayoutManager
-		JPanel listCustomerPanel = new JPanel();
+		listCustomerPanel = new JPanel();
 		listCustomerPanel.setLayout(new GridLayout(0,4));
 		this.add(listCustomerPanel, null);
 		this.addTitleTextField(listCustomerPanel);
 		Collection<Customer> customerList = this.repository.getList();
-		for (Customer customer : customerList) {
-			addTextField(listCustomerPanel,customer.getId(),customer.getName(),customer.getLastName(),customer.getPhone());
+		if(resultOfSearch) {
+			for (Customer customer : customerResultList) {
+				addTextField(listCustomerPanel,customer.getId(),customer.getName(),customer.getLastName(),customer.getPhone());
+			}
+		}else {
+			for (Customer customer : customerList) {
+				addTextField(listCustomerPanel,customer.getId(),customer.getName(),customer.getLastName(),customer.getPhone());
+			}
 		}
-		
 	}
 	
 	private void addTitleTextField(JPanel panel) {
@@ -134,10 +155,17 @@ public class CustomerListView extends JFrame implements IView,ActionListener{
 			this.dispose();
 		}
 		if (e.getActionCommand() == SEARCH_BTN) {
-			this.dispose();
-			this.controller.listCustomer();
+			CustomerSearcherFabric searcherFabric = new CustomerSearcherFabric();
+			if(!lastName.getText().isBlank()) {
+				String nameToFind = lastName.getText();
+				Collection<Customer> result = this.repository.search(searcherFabric.getStrategyToResearchCustomerByName(nameToFind));
+				this.dispose();
+				this.controller.showResult(result);
+			} else if (!id.getText().isBlank()) {
+				Collection<Customer> result = this.repository.search(searcherFabric.getStrategyToResearchCustomerById(Integer.parseInt(id.getText())));
+				this.dispose();
+				this.controller.showResult(result);
+			}
 		}
-		
 	}
-
 }
