@@ -38,6 +38,15 @@ public class DogController implements IDogController{
 		dog.setOwner(customers.get(0));
 		this.repository.add(dog);
 	}
+
+	@Override
+	public boolean verifyIfOwnerExist(String lastName) {
+		ArrayList<Customer> result = this.customerRepository.search(new CustomerSearcherFabric().getStrategyToResearchCustomerByName(lastName));
+		if(result.isEmpty()){
+			return false;
+		}
+		return true;
+	}
 	
 
 }

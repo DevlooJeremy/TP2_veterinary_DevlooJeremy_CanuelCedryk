@@ -18,4 +18,10 @@ public class DogControllerSpy implements IDogController{
 		this.hasAddBeenCalled = true;
 	}
 
+	@Override
+	public boolean verifyIfOwnerExist(String lastName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

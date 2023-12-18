@@ -11,7 +11,6 @@ public class DogConverter {
 		CustomerConverter customerConverter = new CustomerConverter();
 		Customer customer = customerConverter.dtoToCustomer(dogDTO.owner);
 		Dog dog = new Dog(dogDTO.name,dogDTO.breed,dogDTO.weight,customer);
-		dog.setId(dogDTO.id);
 		return dog;
 	}
 	

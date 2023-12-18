@@ -1,7 +1,4 @@
 package dto;
-import java.util.Map;
-
-import dogs.model.Customer;
 
 public class DogDTO {
 	
@@ -12,7 +9,7 @@ public class DogDTO {
 	public final int id;
 	
 	
-	public DogDTO(String name, String breed,int id, float weight, CustomerDTO owner) {
+	public DogDTO(String name, String breed,int id, Float weight, CustomerDTO owner) {
 		this.breed = breed;
 		this.name = name;
 		this.weight = weight;

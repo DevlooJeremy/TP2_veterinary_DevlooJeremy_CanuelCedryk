@@ -3,6 +3,7 @@ package dogs.controller;
 import dto.DogDTO;
 
 public interface IDogController {
-	public void goToCreate();
-	public void add(DogDTO dogDTO);
+	void goToCreate();
+	void add(DogDTO dogDTO);
+	boolean verifyIfOwnerExist(String lastName);
 }

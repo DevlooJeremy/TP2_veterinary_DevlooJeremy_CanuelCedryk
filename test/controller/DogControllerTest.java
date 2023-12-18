@@ -31,6 +31,7 @@ class DogControllerTest {
 		assertTrue(repository.hasAddBeenCalled);
 		assertEquals("Jean", repository.elementAdded.getName());
 		assertEquals("Boxer", repository.elementAdded.getBreed());
+		assertTrue(dogController.verifyIfOwnerExist("Machin"));
 	}
 
 }
