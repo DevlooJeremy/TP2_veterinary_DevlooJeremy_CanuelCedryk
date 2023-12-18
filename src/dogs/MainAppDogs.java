@@ -28,13 +28,13 @@ public class MainAppDogs {
 		IEntityRepository<Customer> customerRepository = new EntityMemoryRepository<Customer>();
 		this.dogRepository = repository;
 		this.customerRepository = customerRepository;
-		DogSeeder seeder = new DogSeeder(this.dogRepository);
 		CustomerSeeder customerSeeder = new CustomerSeeder(this.customerRepository);
+		DogSeeder seeder = new DogSeeder(this.dogRepository,this.customerRepository);
 		this.createControllers();
 	}
 	
 	private void createControllers() {
-		IDogController createDog = new DogController(dogRepository);
+		IDogController createDog = new DogController(dogRepository,customerRepository);
 		IDogListController listController = new DogListController(this.dogRepository);
 		ICustomerController customerController = new CustomerController(this.customerRepository);
 		IWelcomeController appController = new WelcomeController(createDog,listController,customerController);

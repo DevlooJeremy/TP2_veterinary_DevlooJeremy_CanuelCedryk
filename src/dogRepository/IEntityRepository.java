@@ -1,5 +1,6 @@
 package dogRepository;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import dogs.model.Entity;
@@ -10,5 +11,5 @@ public interface IEntityRepository<T extends Entity> {
 	public int size();
 	public Collection<T> getList();
 	public T searchById(int id);
-	public Collection<T> search(IEntitySearcher<T> entitySearcher);
+	public ArrayList<T> search(IEntitySearcher<T> entitySearcher);
 }

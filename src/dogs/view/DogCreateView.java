@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.text.IconView;
 
 import dogs.controller.IDogController;
+import dto.CustomerDTO;
 import dto.DogDTO;
 
 
@@ -31,6 +32,8 @@ public class DogCreateView extends JDialog implements IView, ActionListener {
 
 	private JTextField name = new JTextField(15);
 	private JTextField breed = new JTextField(20);
+	private JTextField weight = new JTextField(10);
+	private JTextField ownerLastName = new JTextField(20);
 
 	private IDogController controller;
 
@@ -65,8 +68,13 @@ public class DogCreateView extends JDialog implements IView, ActionListener {
 		// container interm�diaire JPanel qui contient les �tiquettes (JLabel) et les zones de textes (JTextField)
 		// utiliser un GridLayout comme LayoutManager
 		JPanel createDogPanel = new JPanel();
-		createDogPanel.setLayout(new GridLayout(2,2));
+		createDogPanel.setLayout(new GridLayout(0,2));
 		this.add(createDogPanel);
+		
+		addTextField(createDogPanel,"Nom:",this.name);
+		addTextField(createDogPanel,"Race:",this.breed);
+		addTextField(createDogPanel,"Poids:",this.weight);
+		addTextField(createDogPanel,"Nom du propriétaire:",this.ownerLastName);
 		
 		addTextField(createDogPanel,NAME_LABEL,this.name);
 		addTextField(createDogPanel,BREED_LABEL,this.breed);
@@ -88,13 +96,12 @@ public class DogCreateView extends JDialog implements IView, ActionListener {
 	}
 	
 	private void createDog() {
-		if(!name.getText().isBlank() && !breed.getText().isBlank()) {
-			System.out.println(this.name.getText());
-			System.out.println(this.breed.getText());
-			DogDTO dto = new DogDTO(this.name.getText(),this.breed.getText(),0);
-			this.controller.add(dto);
-			JOptionPane.showMessageDialog(this, "Merci d'avoir inscrit un chien!","Merci",JOptionPane.INFORMATION_MESSAGE);
-		}
+		System.out.println(this.name.getText());
+		System.out.println(this.breed.getText());
+		CustomerDTO customerDTO = new CustomerDTO(null,this.ownerLastName.getText(),null,null,0);
+		DogDTO dogDTO = new DogDTO(this.name.getText(),this.breed.getText(),0,Float.valueOf(this.weight.getText()),customerDTO);
+		this.controller.add(dogDTO);
+		JOptionPane.showMessageDialog(this, "Merci d'avoir inscrit un chien!","Merci",JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package mock;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import dogRepository.IEntityRepository;
@@ -38,7 +39,7 @@ public class RepositorySpy<T extends Entity> implements IEntityRepository<T>{
 	}
 
 	@Override
-	public Collection<T> search(IEntitySearcher<T> entitySearcher) {
+	public ArrayList<T> search(IEntitySearcher<T> entitySearcher) {
 		// TODO Auto-generated method stub
 		return null;
 	}

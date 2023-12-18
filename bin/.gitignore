@@ -2,4 +2,10 @@
 /dogRepository/
 /dogs/
 /mock/
+<<<<<<< HEAD
 /repository/
+=======
+/dog/
+/dto/
+>>>>>>> RecitA3
+/controller/

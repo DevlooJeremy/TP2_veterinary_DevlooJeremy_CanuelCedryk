@@ -1,45 +1,48 @@
-package dogRepository;
+package mock;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import dogRepository.IEntityRepository;
 import dogs.model.Entity;
 import dogs.searcher.IEntitySearcher;
 
-public class EntityMemoryRepository<T extends Entity> implements IEntityRepository<T>{
-
-	private Map<Integer,T> map;
+public class RepositoryStub<T extends Entity> implements IEntityRepository<T>{
 	
-	public EntityMemoryRepository() {
-		this.map = new HashMap<Integer,T>();
+	public Map<Integer,T> map;
+	
+	public RepositoryStub() {
+		this.map = new HashMap();
 	}
-	
+
 	@Override
 	public void add(T element) {
-		element.setId(map.size()+1);
-		map.put(map.size(), element);
+		this.map.put(this.map.size(), element);
 		
 	}
 
 	@Override
 	public int size() {
-		return this.map.size();
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	@Override
-	public Collection<T> getList() {
-		return this.map.values();
+	public Collection getList() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public T searchById(int id) {
-		return this.map.get(id);
+		// TODO Auto-generated method stub
+		return null;
 	}
-	
+
 	@Override
-	public ArrayList<T> search(IEntitySearcher<T> entitySearcher){
+	public ArrayList search(IEntitySearcher entitySearcher) {
 		ArrayList<T> listOfResult = new ArrayList<T>();
 		for (T t : this.map.values()) {
 			if(entitySearcher.isMatching(t)) {
