@@ -10,6 +10,7 @@ import dogs.model.Dog;
 import dto.CustomerDTO;
 import dto.DogDTO;
 import mock.RepositorySpy;
+import mock.RepositoryStub;
 
 class DogControllerTest {
 
@@ -17,9 +18,10 @@ class DogControllerTest {
 	void dogControllerCanAddDogToRepository() {
 		//Arrange
 		RepositorySpy<Dog> repository = new RepositorySpy<Dog>();
-		RepositorySpy<Customer> customerRepository = new RepositorySpy<Customer>();
+		RepositoryStub<Customer> customerRepository = new RepositoryStub<Customer>();
+		customerRepository.add(new Customer(null,"Machin",null,null));
 		DogController dogController = new DogController(repository,customerRepository);
-		CustomerDTO customerDTO = new CustomerDTO(null,null,null,null,0);
+		CustomerDTO customerDTO = new CustomerDTO(null,"Machin",null,null,0);
 		DogDTO dogDTO = new DogDTO("Jean","Boxer",0,25.0f,customerDTO);
 		
 		//Act

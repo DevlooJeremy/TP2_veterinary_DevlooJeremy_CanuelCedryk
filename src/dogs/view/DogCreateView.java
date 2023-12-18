@@ -25,7 +25,10 @@ public class DogCreateView extends JDialog implements IView, ActionListener {
 	
 	private static final String VIEW_TITLE = "Inscription d'un chien";
 	private static final Dimension DEFAULT_SIZE = new Dimension(300, 150);
-	private static final String CREATE_DOG = "create_dog";
+	private static final String SUBSCRIBE_BTN_TXT = "Inscrire";
+	private static final String SUBSCRIBE_BTN = "inscription_chien";
+	private static final String NAME_LABEL = "Nom:";
+	private static final String BREED_LABEL = "Race:";
 
 	private JTextField name = new JTextField(15);
 	private JTextField breed = new JTextField(20);
@@ -66,12 +69,15 @@ public class DogCreateView extends JDialog implements IView, ActionListener {
 		// utiliser un GridLayout comme LayoutManager
 		JPanel createDogPanel = new JPanel();
 		createDogPanel.setLayout(new GridLayout(0,2));
-		this.add(createDogPanel, null);
+		this.add(createDogPanel);
 		
 		addTextField(createDogPanel,"Nom:",this.name);
 		addTextField(createDogPanel,"Race:",this.breed);
 		addTextField(createDogPanel,"Poids:",this.weight);
 		addTextField(createDogPanel,"Nom du propriétaire:",this.ownerLastName);
+		
+		addTextField(createDogPanel,NAME_LABEL,this.name);
+		addTextField(createDogPanel,BREED_LABEL,this.breed);
 		
 	}
 	
@@ -84,19 +90,9 @@ public class DogCreateView extends JDialog implements IView, ActionListener {
 	private void setUpActionPanel() {
 		// container interm�diaire JPanel qui contient le bouton pour inscrire le chien
 		JPanel actionPanel = new JPanel();
-		actionPanel.setLayout(new BorderLayout());
 		this.add(actionPanel,BorderLayout.SOUTH);
 		
-		addButton(actionPanel,"Inscrire",CREATE_DOG);
-	}
-
-	// m�me m�thode que dans WelcomeView
-	// DRY -> m�thode utilitaire � extraire dans une classe utilitaire util.view.ViewUtil 
-	private void addButton(JPanel actionPanel, String buttonText, String buttonAction) {   
-		JButton button = new JButton(buttonText);
-		button.setActionCommand(buttonAction);
-		button.addActionListener(this);
-		actionPanel.add(button);
+		ViewUtil.addButton(this, actionPanel, SUBSCRIBE_BTN_TXT, SUBSCRIBE_BTN);
 	}
 	
 	private void createDog() {
@@ -110,7 +106,7 @@ public class DogCreateView extends JDialog implements IView, ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand() == CREATE_DOG) {
+		if (e.getActionCommand() == SUBSCRIBE_BTN) {
 			createDog();
 			
 		}
