@@ -2,6 +2,7 @@ package dogs.controller;
 
 import dog.converter.DogConverter;
 import dogRepository.IEntityRepository;
+import dogs.model.Customer;
 import dogs.model.Dog;
 import dogs.view.DogCreateView;
 import dogs.view.IView;
@@ -11,9 +12,11 @@ public class DogController implements IDogController{
 
 
 	private IEntityRepository<Dog> repository;
+	private IEntityRepository<Customer> customerRepository;
 	
-	public DogController(IEntityRepository<Dog> repository) {
+	public DogController(IEntityRepository<Dog> repository,IEntityRepository<Customer> customerRepository) {
 		this.repository = repository;
+		this.customerRepository = customerRepository;
 	}
 	
 	@Override
@@ -25,7 +28,8 @@ public class DogController implements IDogController{
 	@Override
 	public void add(DogDTO dogDTO) {
 		DogConverter converter = new DogConverter();
-		this.repository.add(converter.dtoToDog(dogDTO));
+		Dog dog = converter.dtoToDog(dogDTO);
+		this.repository.add(dog);
 	}
 	
 

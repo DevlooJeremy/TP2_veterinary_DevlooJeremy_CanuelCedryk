@@ -8,10 +8,10 @@ import dogs.model.Customer;
 
 class CustomerTest {
 	
-	private static final String ANY_NAME = "Jean";
-	private static final String ANY_LAST_NAME = "Dujardin";
-	private static final String ANY_PHONE = "418.380.3141";
-	private static final String ANY_EMAIL = "jeandujardin@gmail.com";
+	public static final String ANY_NAME = "Jean";
+	public static final String ANY_LAST_NAME = "Dujardin";
+	public static final String ANY_PHONE = "418.380.3141";
+	public static final String ANY_EMAIL = "jeandujardin@gmail.com";
 
 	@Test
 	void customerCanBeCreated() {

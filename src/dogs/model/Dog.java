@@ -3,12 +3,16 @@ package dogs.model;
 public class Dog extends Entity{  // La classe est tr�s simple ici mais il pourrait avoir des validations ou des algos plus complexes.
 	
 	private String name;
-	private String breed;  // Id�alement faire une classe Breed (pr�f�rer � une enum)
+	private String breed;
+	private float weight;
+	private Customer owner;
 	
-	public Dog(String name, String breed) {
+	public Dog(String name, String breed, float weight, Customer owner) {
 		super();
 		this.name = name;
 		this.breed = breed;
+		this.weight = weight;
+		this.owner = owner;
 	}
 	
 	public String getName() {
@@ -23,6 +27,22 @@ public class Dog extends Entity{  // La classe est tr�s simple ici mais il pou
 	}
 	public void setBreed(String breed) {
 		this.breed = breed;
+	}
+	
+	public float getWeight() {
+		return this.weight;
+	}
+	
+	public void setWeight(float weight) {
+		this.weight = weight;
+	}
+	
+	public Customer getOwner() {
+		return this.owner;
+	}
+	
+	public void setOwner(Customer customer) {
+		this.owner = customer;
 	}
 
 }

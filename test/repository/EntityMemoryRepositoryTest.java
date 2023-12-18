@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import dogRepository.EntityMemoryRepository;
 import dogRepository.IEntityRepository;
+import dogs.model.Customer;
 import dogs.model.Dog;
 
 class EntityMemoryRepositoryTest {
@@ -13,7 +14,8 @@ class EntityMemoryRepositoryTest {
 	@Test
 	void newDogCanBeAddedToRepository() {
 		//Arrange
-		Dog dog = new Dog("Jean","Machin");
+		Customer customer = new Customer("Jean","Sebastien","418-444-1919","courriel@gmail.com");
+		Dog dog = new Dog("Jean","Machin",15.0f,customer);
 		IEntityRepository<Dog> repository = new EntityMemoryRepository<Dog>();
 		
 		//Act
