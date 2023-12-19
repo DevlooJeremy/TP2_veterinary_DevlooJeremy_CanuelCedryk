@@ -14,6 +14,8 @@ import dogs.controller.IWelcomeController;
 import dogs.controller.WelcomeController;
 import dogs.model.Customer;
 import dogs.model.Dog;
+import dogs.observer.DogListObserver;
+import dogs.observer.IObserver;
 
 public class MainAppDogs {
 
@@ -38,6 +40,8 @@ public class MainAppDogs {
 		IDogListController listController = new DogListController(this.dogRepository);
 		ICustomerController customerController = new CustomerController(this.customerRepository);
 		IWelcomeController appController = new WelcomeController(createDog,listController,customerController);
+		DogListObserver observer = new DogListObserver(listController);
+		createDog.addObserver(observer);
 		appController.startApplication();
 	}
 

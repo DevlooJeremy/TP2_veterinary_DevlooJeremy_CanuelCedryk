@@ -7,8 +7,10 @@ import org.junit.jupiter.api.Test;
 import dogs.controller.DogController;
 import dogs.model.Customer;
 import dogs.model.Dog;
+import dogs.observer.IObserver;
 import dto.CustomerDTO;
 import dto.DogDTO;
+import mock.ObserverDummy;
 import mock.RepositorySpy;
 import mock.RepositoryStub;
 
@@ -33,5 +35,6 @@ class DogControllerTest {
 		assertEquals("Boxer", repository.elementAdded.getBreed());
 		assertTrue(dogController.verifyIfOwnerExist("Machin"));
 	}
+
 
 }

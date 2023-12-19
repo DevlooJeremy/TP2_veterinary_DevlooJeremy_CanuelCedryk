@@ -41,5 +41,20 @@ class WelcomeControllerTest {
 		//Assert
 		assertTrue(listController.hasGoToCreateBeenCalled);
 	}
+	
+	@Test
+	void WelcomeControllerCanCallCustomerListController() {
+		//Arrange
+		DogControllerSpy dogController = new DogControllerSpy();
+		ListControllerSpy listController = new ListControllerSpy();
+		CustomerControllerSpy customerController = new CustomerControllerSpy();
+		WelcomeController welcomeController = new WelcomeController(dogController,listController,customerController);
+		
+		//Act
+		welcomeController.wantToListCustomer();
+		
+		//Assert
+		assertTrue(customerController.hasListCustomerBeenCalled);
+	}
 
 }

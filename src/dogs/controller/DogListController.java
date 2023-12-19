@@ -6,7 +6,7 @@ import dogs.view.DogListView;
 
 public class DogListController implements IDogListController{
 
-	
+	private DogListView view;
 	private IEntityRepository<Dog> repository;
 	
 	public DogListController(IEntityRepository<Dog> repository) {
@@ -15,7 +15,12 @@ public class DogListController implements IDogListController{
 	@Override
 	public void goToCreate() {
 		DogListView listView = new DogListView(this,this.repository);
+		this.view = listView;
 		listView.display();
+	}
+	@Override
+	public void update() {
+		if (this.view != null) this.view.updateList();
 	}
 
 }

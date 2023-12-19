@@ -7,6 +7,7 @@ import dog.converter.DogConverter;
 import dogRepository.IEntityRepository;
 import dogs.model.Customer;
 import dogs.model.Dog;
+import dogs.observer.IObserver;
 import dogs.searcher.CustomerSearcherFabric;
 import dogs.view.DogCreateView;
 import dogs.view.IView;
@@ -14,7 +15,7 @@ import dto.DogDTO;
 
 public class DogController implements IDogController{
 
-
+	private IObserver observer;
 	private IEntityRepository<Dog> repository;
 	private IEntityRepository<Customer> customerRepository;
 	
@@ -46,6 +47,21 @@ public class DogController implements IDogController{
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public void addObserver(IObserver observer) {
+		this.observer = observer;
+	}
+
+	@Override
+	public void removeObserver(IObserver observer) {
+		this.observer = null;
+	}
+
+	@Override
+	public void notifyObserver() {
+		this.observer.update();
 	}
 	
 

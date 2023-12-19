@@ -7,9 +7,11 @@ import dogs.model.Customer;
 
 public class CustomerControllerSpy implements ICustomerController{
 
+	public boolean hasListCustomerBeenCalled;
+	
 	@Override
 	public void listCustomer() {
-		// TODO Auto-generated method stub
+		this.hasListCustomerBeenCalled = true;
 		
 	}
 
